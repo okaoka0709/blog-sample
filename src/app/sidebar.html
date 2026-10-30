@@ -1,0 +1,92 @@
+@if (store.settings(); as blog) {
+  <aside class="sidebar" aria-label="作者與文章分類">
+    <div class="profile">
+      <img
+        class="avatar"
+        [src]="blog.avatar"
+        [alt]="blog.author + ' 的頭像'"
+        width="104"
+        height="104"
+      />
+      <h2>
+        {{ blog.author }}<span class="profile-dot" aria-hidden="true"></span>
+      </h2>
+      <p class="profile-role">{{ blog.role }}</p>
+      <p class="profile-bio">{{ blog.bio }}</p>
+      <a
+        class="profile-link"
+        [href]="blog.sourceUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        >關於這本筆記 <span aria-hidden="true">↗</span></a
+      >
+    </div>
+
+    <details
+      #sections
+      class="sidebar-sections"
+      [open]="expanded"
+      (toggle)="expanded = sections.open"
+    >
+      <summary>探索筆記 <span aria-hidden="true">⌄</span></summary>
+      <nav aria-label="文章篩選">
+        <section class="sidebar-section">
+          <h3>
+            <span class="section-dot coral"></span>筆記分類
+            <span class="section-en">CATEGORIES</span>
+          </h3>
+          <a
+            class="sidebar-item"
+            routerLink="/"
+            [class.active]="
+              !filters()?.get('category') &&
+              !filters()?.get('year') &&
+              !filters()?.get('q')
+            "
+          >
+            <span>全部文章</span
+            ><span class="count">{{
+              store.posts().length.toString().padStart(2, '0')
+            }}</span>
+          </a>
+          @for (category of store.categories(); track category) {
+            <a
+              class="sidebar-item"
+              routerLink="/"
+              [queryParams]="{ category: category }"
+              [class.active]="filters()?.get('category') === category"
+            >
+              <span>{{ category }}</span
+              ><span class="count">{{
+                categoryCount(category).toString().padStart(2, '0')
+              }}</span>
+            </a>
+          }
+        </section>
+
+        <section class="sidebar-section">
+          <h3>
+            <span class="section-dot sage"></span>時光索引
+            <span class="section-en">ARCHIVE</span>
+          </h3>
+          @for (year of store.years(); track year) {
+            <a
+              class="sidebar-item"
+              routerLink="/"
+              [queryParams]="{ year: year }"
+              [class.active]="filters()?.get('year') === year"
+            >
+              <span>{{ year }} 年</span
+              ><span class="count">{{
+                yearCount(year).toString().padStart(2, '0')
+              }}</span>
+            </a>
+          }
+        </section>
+      </nav>
+    </details>
+    <p class="sidebar-note">
+      一點技術，一點生活。<br />還有那些不想忘記的小事。
+    </p>
+  </aside>
+}

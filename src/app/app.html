@@ -1,0 +1,77 @@
+<a
+  class="skip-link"
+  href="#main-content"
+  (click)="
+    $event.preventDefault(); mainContent.focus(); mainContent.scrollIntoView()
+  "
+  >跳到主要內容</a
+>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" routerLink="/" aria-label="Oka 的隨堂筆記首頁">
+      <span class="brand-mark" aria-hidden="true">O.</span>
+      <span>隨堂筆記 <span class="brand-en">/ FIELD NOTES</span></span>
+    </a>
+    <nav aria-label="主要導覽">
+      <a routerLink="/">全部文章</a>
+      @if (store.settings(); as blog) {
+        <a
+          class="source-nav"
+          [href]="blog.sourceUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          >原始部落格 <span aria-hidden="true">↗</span></a
+        >
+      }
+    </nav>
+  </div>
+</header>
+
+@if (store.settings(); as blog) {
+  <section
+    class="hero"
+    [style.background-image]="
+      'linear-gradient(90deg, rgba(25, 27, 28, .56), rgba(25, 27, 28, .22)), url(' +
+      blog.banner +
+      ')'
+    "
+    aria-label="部落格封面"
+  >
+    <div class="container hero-inner">
+      <div class="hero-title">
+        <p class="eyebrow">DESIGN · CODE · EVERYDAY</p>
+        <h1>{{ blog.title }}</h1>
+        <p>{{ blog.subtitle }}</p>
+      </div>
+      <span class="hero-caption">把想法留下，讓日常成為筆記。</span>
+    </div>
+  </section>
+}
+
+<div class="container layout">
+  @if (store.settings()) {
+    <app-sidebar />
+  }
+
+  <main #mainContent id="main-content" tabindex="-1">
+    @if (store.loading()) {
+      <div class="state-message" role="status">正在翻開筆記…</div>
+    } @else if (store.error()) {
+      <div class="state-message" role="alert">
+        <h2>暫時讀不到筆記</h2>
+        <p>{{ store.error() }}</p>
+        <button class="primary-button" type="button" (click)="store.load()">
+          重新載入
+        </button>
+      </div>
+    } @else {
+      <router-outlet />
+    }
+  </main>
+</div>
+
+<footer class="container site-footer">
+  <span>© {{ store.settings()?.author ?? 'Oka Li' }} · 隨堂筆記</span>
+  <span>用文字，收藏每一個靈感。</span>
+</footer>

@@ -1,0 +1,172 @@
+[
+  {
+    "id": "css-label",
+    "slug": "css-label",
+    "title": "CSS 小技巧之四：用 label 設計勾選框",
+    "author": "Oka Li",
+    "publishedAt": "2016-02-22",
+    "category": "CSS",
+    "tags": ["CSS", "HTML", "表單"],
+    "sourceUrl": "https://okaoka0709.blogspot.com/2016/02/css-label.html",
+    "contentNote": "依原文重點整理的 Demo 摘要，非逐字全文；分類與標籤為 Demo 編排。",
+    "excerpt": "從 label 與勾選框的連動出發，運用偽元素及狀態選擇器，製作具有切換效果的開關。",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "原文先介紹如何用 label 的 for 屬性對應 input 的 id，讓使用者點擊說明文字時，也能切換勾選框。"
+      },
+      {
+        "type": "code",
+        "language": "HTML · 精簡示例",
+        "text": "<input id=\"agree\" type=\"checkbox\">\n<label for=\"agree\">我已閱讀並同意</label>"
+      },
+      {
+        "type": "paragraph",
+        "text": "接著以 ::before 畫出開關底座、::after 製作滑塊，再透過 :checked 改變顏色與位置。最後加入圓角和 transition，完成開關的外觀與過渡效果。"
+      }
+    ],
+    "comments": [
+      {
+        "id": "demo-css-label-1",
+        "author": "示範讀者・小林",
+        "text": "用 label 增加可以點擊的範圍，這個小細節很實用。（此為 Demo 留言）",
+        "createdAt": "2016-02-23T09:20:00+08:00"
+      }
+    ]
+  },
+  {
+    "id": "javascript-justified-layout",
+    "slug": "javascript-justified-layout",
+    "title": "Javascript 等高響應佈局",
+    "author": "Oka Li",
+    "publishedAt": "2016-02-15",
+    "category": "JavaScript",
+    "tags": ["JavaScript", "圖片排版", "版面設計"],
+    "sourceUrl": "https://okaoka0709.blogspot.com/2016/02/blog-post.html",
+    "contentNote": "依原文重點整理的 Demo 摘要，非逐字全文；分類與標籤為 Demo 編排。",
+    "excerpt": "讓不同比例的圖片在每一列維持相同高度，並依容器寬度調整尺寸，使左右邊緣整齊排列。",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "文章比較瀑布流與等高圖片佈局，後者希望同一列圖片高度一致，同時讓每列的兩端對齊容器。"
+      },
+      {
+        "type": "image",
+        "src": "images/layout-demo.svg",
+        "alt": "六個不同寬度的區塊分成兩列，每列高度相同，左右邊緣對齊。",
+        "caption": "Demo 排版示意：依文章概念繪製，非原文圖片。"
+      },
+      { "type": "heading", "level": 2, "text": "排版計算流程" },
+      {
+        "type": "list",
+        "items": [
+          "等待圖片載入後取得尺寸，依基準高度計算各張圖片的寬度。",
+          "累加圖片寬度，判斷每張圖片應安排在哪一列。",
+          "以容器寬度與該列圖片總寬度的比例，縮放圖片並設定顯示尺寸。"
+        ]
+      },
+      {
+        "type": "paragraph",
+        "text": "原文以 JavaScript 逐步實作上述計算，並提出效能及響應式支援可繼續擴充。"
+      }
+    ],
+    "comments": []
+  },
+  {
+    "id": "scss-mixin-content",
+    "slug": "scss-mixin-content",
+    "title": "SCSS @include、@mixin 與 @content",
+    "author": "Oka Li",
+    "publishedAt": "2016-01-14",
+    "category": "SCSS",
+    "tags": ["SCSS", "CSS", "樣式重用"],
+    "sourceUrl": "https://okaoka0709.blogspot.com/2016/01/scss-includemixin-content.html",
+    "contentNote": "依原文重點整理的 Demo 摘要，非逐字全文；分類與標籤為 Demo 編排。",
+    "excerpt": "透過 mixin 封裝重複樣式，傳入參數或整段樣式內容，並延伸到響應式與列印樣式的管理。",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "文章以圓角樣式為例，介紹先用 @mixin 定義可接受參數的樣式，再用 @include 呼叫；沒有傳入參數時，則使用預設值。"
+      },
+      {
+        "type": "paragraph",
+        "text": "後半段介紹 @content，讓呼叫端傳入一整段樣式。原文進一步示範狀態選擇器、media query 與列印規則，說明如何集中管理重複的樣式結構。"
+      }
+    ],
+    "comments": []
+  },
+  {
+    "id": "scss-map-each",
+    "slug": "scss-map-each",
+    "title": "SCSS map 與 each 迴圈",
+    "author": "Oka Li",
+    "publishedAt": "2015-12-26",
+    "category": "SCSS",
+    "tags": ["SCSS", "CSS", "迴圈"],
+    "sourceUrl": "https://okaoka0709.blogspot.com/2015/12/scss-map-each.html",
+    "contentNote": "依原文重點整理的 Demo 摘要，非逐字全文；分類與標籤為 Demo 編排。",
+    "excerpt": "將相關設定放進 map，再以 each 逐項產生樣式，減少重複撰寫與維護多組規則的負擔。",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "原文以社群按鈕為例，把圖片路徑與代表色整理成鍵值資料，並示範使用 map-get 讀取設定。"
+      },
+      {
+        "type": "paragraph",
+        "text": "多組按鈕的資料可以再放進同一份 map，以 @each 走訪各項設定，搭配插值產生對應的 class。新增或修改項目時，便能從集中保存的設定著手。"
+      }
+    ],
+    "comments": []
+  },
+  {
+    "id": "mosquito-net-memories",
+    "slug": "mosquito-net-memories",
+    "title": "掛蚊帳的回憶",
+    "author": "Oka Li",
+    "publishedAt": "2015-12-05",
+    "category": "生活紀事",
+    "tags": ["生活", "回憶", "當兵"],
+    "sourceUrl": "https://okaoka0709.blogspot.com/2015/12/blog-post.html",
+    "contentNote": "依原文重點整理的 Demo 摘要，非逐字全文；分類與標籤為 Demo 編排。",
+    "excerpt": "一次聊天勾起服役時的往事：為了睡前短短的通話，作者總是趕著替同袍掛好蚊帳。",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "與曾經喜歡的人聊天，讓作者想起當兵時的生活。當時必須等寢室的蚊帳都掛好，才有機會打電話。"
+      },
+      {
+        "type": "paragraph",
+        "text": "為了爭取睡前那三分鐘，他洗完澡後便忙著替大家掛蚊帳。回頭看來，當時付出的心力，也讓這段記憶格外鮮明。"
+      }
+    ],
+    "comments": []
+  },
+  {
+    "id": "html-tables",
+    "slug": "html-tables",
+    "title": "HTML常用標籤（二）",
+    "author": "Oka Li",
+    "publishedAt": "2013-06-26",
+    "category": "HTML",
+    "tags": ["HTML", "表格", "入門"],
+    "sourceUrl": "https://okaoka0709.blogspot.com/2013/06/html_26.html",
+    "contentNote": "依原文重點整理的 Demo 摘要，非逐字全文；分類與標籤為 Demo 編排。",
+    "excerpt": "從 table、tr 與 td 的基本結構開始，逐步建立多列多欄表格，再介紹儲存格合併。",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "文章從最簡單的單一儲存格開始，以逐步增加 tr 與 td 的方式，說明如何組成兩欄及多列的 HTML 表格。"
+      },
+      { "type": "heading", "level": 2, "text": "合併儲存格" },
+      {
+        "type": "list",
+        "items": [
+          "rowspan 用來讓儲存格跨越多列。",
+          "colspan 用來讓儲存格跨越多欄。",
+          "合併之後，要調整其餘儲存格的數量，使表格結構保持一致。"
+        ]
+      }
+    ],
+    "comments": []
+  }
+]

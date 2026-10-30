@@ -1,0 +1,60 @@
+<section class="comments-section" aria-labelledby="comments-title">
+  <div class="comments-heading">
+    <h3 id="comments-title">
+      留下一點想法 <span>{{ store.commentsFor(post()).length }}</span>
+    </h3>
+    <span class="eyebrow muted">CONVERSATION</span>
+  </div>
+  <p class="comments-hint">這是前端 Demo，新增留言只會保存在目前的瀏覽器。</p>
+
+  <form class="comment-form" (ngSubmit)="submit()">
+    <label for="comment-author">你的暱稱</label>
+    <input
+      id="comment-author"
+      name="author"
+      [(ngModel)]="author"
+      placeholder="怎麼稱呼你？"
+      maxlength="40"
+      required
+      autocomplete="nickname"
+    />
+    <label for="comment-text">留言內容</label>
+    <textarea
+      id="comment-text"
+      name="text"
+      [(ngModel)]="text"
+      placeholder="分享你的想法…"
+      maxlength="2000"
+      rows="4"
+      required
+    ></textarea>
+    <div class="comment-submit">
+      <span>謝謝你，讓筆記多了一點交流。</span>
+      <button class="primary-button" type="submit">
+        送出留言 <span aria-hidden="true">↗</span>
+      </button>
+    </div>
+    <p class="form-notice" role="status">{{ notice() }}</p>
+  </form>
+
+  <div class="comment-list">
+    @for (comment of store.commentsFor(post()); track comment.id) {
+      <article class="comment">
+        <div class="comment-avatar" aria-hidden="true">
+          {{ comment.author.slice(0, 1) }}
+        </div>
+        <div>
+          <div class="comment-info">
+            <h4>{{ comment.author }}</h4>
+            <time [attr.datetime]="comment.createdAt">{{
+              comment.createdAt | date: 'yyyy.MM.dd HH:mm'
+            }}</time>
+          </div>
+          <p>{{ comment.text }}</p>
+        </div>
+      </article>
+    } @empty {
+      <p class="no-comments">還沒有留言，來寫下第一個想法吧。</p>
+    }
+  </div>
+</section>

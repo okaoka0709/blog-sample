@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="460" viewBox="0 0 960 460">
+  <rect width="960" height="460" fill="#f3f2eb"/>
+  <text x="42" y="52" fill="#728168" font-family="sans-serif" font-size="13" letter-spacing="3">JUSTIFIED IMAGE LAYOUT</text>
+  <g stroke="#fff" stroke-width="6">
+    <path d="M42 82h240v145H42z" fill="#a2b297"/>
+    <path d="M282 82h380v145H282z" fill="#d5b49d"/>
+    <path d="M662 82h256v145H662z" fill="#bac5b6"/>
+    <path d="M42 227h360v145H42z" fill="#d2c6ab"/>
+    <path d="M402 227h200v145H402z" fill="#b4bdb4"/>
+    <path d="M602 227h316v145H602z" fill="#c69682"/>
+  </g>
+  <g fill="#fff" font-family="Georgia,serif" font-size="26" text-anchor="middle">
+    <text x="162" y="163">01</text><text x="472" y="163">02</text><text x="790" y="163">03</text>
+    <text x="222" y="307">04</text><text x="502" y="307">05</text><text x="760" y="307">06</text>
+  </g>
+  <path d="M42 397h876m-876-5v10m876-10v10" fill="none" stroke="#87947d"/>
+  <text x="480" y="430" text-anchor="middle" fill="#87947d" font-family="sans-serif" font-size="12" letter-spacing="2">SAME ROW HEIGHT · DIFFERENT IMAGE WIDTHS</text>
+</svg>

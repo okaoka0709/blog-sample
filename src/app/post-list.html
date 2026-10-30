@@ -1,0 +1,96 @@
+<div class="list-toolbar">
+  <div>
+    <p class="eyebrow muted">THE NOTEBOOK</p>
+    <h2>
+      {{ title() }}
+      <span class="total-count">{{
+        posts().length.toString().padStart(2, '0')
+      }}</span>
+    </h2>
+  </div>
+  <form
+    class="search-form"
+    role="search"
+    (submit)="search($event, searchInput.value)"
+  >
+    <label class="sr-only" for="article-search">搜尋文章</label>
+    <input
+      #searchInput
+      id="article-search"
+      type="search"
+      placeholder="搜尋筆記…"
+      [value]="query()"
+      maxlength="100"
+    />
+    <button type="submit" aria-label="搜尋文章">
+      <svg
+        viewBox="0 0 24 24"
+        width="18"
+        height="18"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        aria-hidden="true"
+      >
+        <circle cx="10.5" cy="10.5" r="6.5" />
+        <path d="m16 16 4.5 4.5" />
+      </svg>
+    </button>
+  </form>
+</div>
+
+@if (isFiltered()) {
+  <div class="filter-status" role="status">
+    <span>
+      @if (query()) {
+        「{{ query() }}」的搜尋結果 ·
+      }
+      共 {{ posts().length }} 篇筆記</span
+    >
+    <a routerLink="/">清除篩選 ×</a>
+  </div>
+}
+
+<div class="post-list">
+  @for (post of posts(); track post.id; let index = $index) {
+    <article class="post-preview">
+      <div class="post-kicker">
+        <span>{{ post.category }}</span
+        ><span class="post-number"
+          >NOTE {{ (index + 1).toString().padStart(2, '0') }}</span
+        >
+      </div>
+      <h3>
+        <a
+          [routerLink]="['/posts', post.slug]"
+          queryParamsHandling="preserve"
+          >{{ post.title }}</a
+        >
+      </h3>
+      <p class="excerpt">{{ post.excerpt }}</p>
+      <div class="preview-bottom">
+        <app-post-meta [post]="post" />
+        <a
+          class="read-link"
+          [routerLink]="['/posts', post.slug]"
+          queryParamsHandling="preserve"
+          [attr.aria-label]="'閱讀：' + post.title"
+          >閱讀筆記 <span aria-hidden="true">↗</span></a
+        >
+      </div>
+    </article>
+  } @empty {
+    <div class="state-message">
+      <span class="empty-symbol" aria-hidden="true">∅</span>
+      <h3>還沒有這樣的筆記</h3>
+      <p>試試其他關鍵字，或回到全部文章看看。</p>
+      <a class="text-link" routerLink="/">查看全部文章 →</a>
+    </div>
+  }
+</div>
+
+@if (posts().length) {
+  <div class="list-ending">
+    <span></span>已經讀到這裡，共 {{ posts().length }} 篇筆記<span></span>
+  </div>
+}
